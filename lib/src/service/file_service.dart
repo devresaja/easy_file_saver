@@ -62,7 +62,7 @@ class FileService {
           directory = Directory('/storage/emulated/0/$appName');
         } else {
           directory = Directory(
-            '/storage/emulated/0/Android/media/$packageName',
+            '/storage/emulated/0/Android/media/$packageName/$appName',
           );
         }
         break;
