@@ -1,4 +1,4 @@
-group = "com.example.easy_file_saver"
+group = "id.resdev.easy_file_saver"
 version = "1.0-SNAPSHOT"
 
 buildscript {
@@ -25,7 +25,7 @@ apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
 android {
-    namespace = "com.example.easy_file_saver"
+    namespace = "id.resdev.easy_file_saver"
 
     compileSdk = 35
 
@@ -44,7 +44,8 @@ android {
     }
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
+        targetSdk = 35
     }
 
     dependencies {
