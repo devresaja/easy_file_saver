@@ -1,7 +1,7 @@
 name: easy_file_saver
-description: "A new Flutter plugin project."
-version: 0.0.1
-homepage:
+description: "A Flutter plugin for easily saving files to various directories. This plugin handles permissions and different storage locations, including internal storage, external storage, downloads, and the Storage Access Framework (SAF)."
+version: 1.0.0
+homepage: https://github.com/devresaja/easy_file_saver
 
 environment:
   sdk: ^3.7.2
