@@ -1,4 +1,3 @@
-// ignore_for_file: curly_braces_in_flow_control_structures
 import 'dart:io';
 import 'package:easy_file_saver/src/easy_file_directory.dart';
 import 'package:easy_file_saver/src/service/file_service.dart';
@@ -27,7 +26,7 @@ class EasyFileSaver {
       },
     );
 
-    final filePath = await _getFilePath(fileName, directory);
+    final filePath = await getFilePath(fileName, directory);
 
     switch (directory) {
       case EasyFileDirectory.internal:
@@ -50,7 +49,13 @@ class EasyFileSaver {
     return filePath;
   }
 
-  static Future<String?> _getFilePath(
+  /// Retrieves the file path for the specified file name and directory.
+  ///
+  /// Returns the expected file path if applicable, otherwise null.
+  ///
+  /// Notes:
+  /// - `fileName` must include the file extension (e.g., "document.pdf").
+  static Future<String?> getFilePath(
     String fileName,
     EasyFileDirectory directory,
   ) async {
@@ -65,8 +70,9 @@ class EasyFileSaver {
     String fileName,
     Uint8List bytes,
   ) async {
-    if (filePath == null)
+    if (filePath == null) {
       throw Exception('Internal directory file path is null');
+    }
 
     final file = File(filePath);
     await file.create(recursive: true);
