@@ -1,6 +1,6 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 import 'dart:io';
-import 'package:easy_file_saver/easy_file_directory.dart';
+import 'package:easy_file_saver/src/easy_file_directory.dart';
 import 'package:easy_file_saver/src/service/file_service.dart';
 import 'package:flutter/services.dart';
 import 'package:mime/mime.dart' show lookupMimeType;

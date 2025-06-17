@@ -1,6 +1,5 @@
-// ignore_for_file: curly_braces_in_flow_control_structures
 import 'dart:io';
-import 'package:easy_file_saver/easy_file_directory.dart';
+import 'package:easy_file_saver/src/easy_file_directory.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:device_info_plus/device_info_plus.dart';
