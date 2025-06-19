@@ -19,14 +19,11 @@ class EasyFileSaver {
     required EasyFileDirectory directory,
     Function()? onPermissionDenied,
   }) async {
-    await FileService.requestPermission(
-      onPermissionDenied: () {
-        onPermissionDenied?.call();
-        return;
-      },
+    final filePath = await getFilePath(
+      fileName: fileName,
+      directory: directory,
+      onPermissionDenied: onPermissionDenied,
     );
-
-    final filePath = await getFilePath(fileName, directory);
 
     switch (directory) {
       case EasyFileDirectory.cache:
@@ -59,11 +56,19 @@ class EasyFileSaver {
   ///
   /// Notes:
   /// - `fileName` must include the file extension (e.g., "document.pdf").
-  static Future<String?> getFilePath(
-    String fileName,
-    EasyFileDirectory directory,
-  ) async {
+  static Future<String?> getFilePath({
+    required String fileName,
+    required EasyFileDirectory directory,
+    Function()? onPermissionDenied,
+  }) async {
     if (directory == EasyFileDirectory.saf) return null;
+
+    await FileService.requestPermission(
+      onPermissionDenied: () {
+        onPermissionDenied?.call();
+        return;
+      },
+    );
 
     final dir = await FileService.getDirectory(directory);
     return '${dir.path}/$fileName';
