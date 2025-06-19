@@ -62,16 +62,20 @@ class FileService {
           (info) => info.version.sdkInt,
         );
         if (androidVersion <= 29) {
-          directory = Directory('/storage/emulated/0/$appName');
+          directory = await _ensureDirectoryExist(
+            '/storage/emulated/0/$appName',
+          );
         } else {
-          directory = Directory(
+          directory = await _ensureDirectoryExist(
             '/storage/emulated/0/Android/media/$packageName/$appName',
           );
         }
         break;
 
       case EasyFileDirectory.download:
-        directory = Directory('/storage/emulated/0/Download/$appName');
+        directory = await _ensureDirectoryExist(
+          '/storage/emulated/0/Download/$appName',
+        );
         break;
 
       case EasyFileDirectory.saf:
@@ -81,5 +85,9 @@ class FileService {
     }
 
     return directory;
+  }
+
+  static Future<Directory> _ensureDirectoryExist(String filePath) async {
+    return await Directory(filePath).create(recursive: true);
   }
 }
