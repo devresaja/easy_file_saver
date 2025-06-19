@@ -29,8 +29,12 @@ class EasyFileSaver {
     final filePath = await getFilePath(fileName, directory);
 
     switch (directory) {
+      case EasyFileDirectory.cache:
+        await _saveToAppInternalStorage(filePath, fileName, bytes);
+        break;
+
       case EasyFileDirectory.internal:
-        await _saveToInternal(filePath, fileName, bytes);
+        await _saveToAppInternalStorage(filePath, fileName, bytes);
         break;
 
       case EasyFileDirectory.external:
@@ -65,7 +69,7 @@ class EasyFileSaver {
     return '${dir.path}/$fileName';
   }
 
-  static Future<void> _saveToInternal(
+  static Future<void> _saveToAppInternalStorage(
     String? filePath,
     String fileName,
     Uint8List bytes,

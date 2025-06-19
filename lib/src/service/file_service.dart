@@ -49,6 +49,10 @@ class FileService {
     final packageName = await _getPackageName();
 
     switch (location) {
+      case EasyFileDirectory.cache:
+        directory = await getTemporaryDirectory();
+        break;
+
       case EasyFileDirectory.internal:
         directory = await getApplicationDocumentsDirectory();
         break;
