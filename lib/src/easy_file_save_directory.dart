@@ -9,7 +9,7 @@
 ///
 /// Notes:
 /// - [saf] does **not** support returning a file path directly.
-enum EasyFileDirectory {
+enum EasyFileSaveDirectory {
   /// Android: Temporary cache directory.
   cache,
 

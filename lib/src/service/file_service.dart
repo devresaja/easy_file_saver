@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:easy_file_saver/src/easy_file_directory.dart';
+import 'package:easy_file_saver/src/easy_file_save_directory.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -43,21 +43,21 @@ class FileService {
     }
   }
 
-  static Future<Directory> getDirectory(EasyFileDirectory location) async {
+  static Future<Directory> getDirectory(EasyFileSaveDirectory location) async {
     final Directory directory;
     final appName = await _getAppName();
     final packageName = await _getPackageName();
 
     switch (location) {
-      case EasyFileDirectory.cache:
+      case EasyFileSaveDirectory.cache:
         directory = await getTemporaryDirectory();
         break;
 
-      case EasyFileDirectory.internal:
+      case EasyFileSaveDirectory.internal:
         directory = await getApplicationDocumentsDirectory();
         break;
 
-      case EasyFileDirectory.external:
+      case EasyFileSaveDirectory.external:
         final androidVersion = await DeviceInfoPlugin().androidInfo.then(
           (info) => info.version.sdkInt,
         );
@@ -72,15 +72,15 @@ class FileService {
         }
         break;
 
-      case EasyFileDirectory.download:
+      case EasyFileSaveDirectory.download:
         directory = await _ensureDirectoryExist(
           '/storage/emulated/0/Download/$appName',
         );
         break;
 
-      case EasyFileDirectory.saf:
+      case EasyFileSaveDirectory.saf:
         throw UnsupportedError(
-          'EasyFileDirectory.saf does not support file path access.',
+          'EasyFileSaveDirectory.saf does not support file path access.',
         );
     }
 

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:easy_file_saver/src/easy_file_directory.dart';
+import 'package:easy_file_saver/src/easy_file_save_directory.dart';
 import 'package:easy_file_saver/src/service/file_service.dart';
 import 'package:flutter/services.dart';
 import 'package:mime/mime.dart' show lookupMimeType;
@@ -16,7 +16,7 @@ class EasyFileSaver {
   static Future<String?> save({
     required String fileName,
     required Uint8List bytes,
-    required EasyFileDirectory directory,
+    required EasyFileSaveDirectory directory,
     Function()? onPermissionDenied,
   }) async {
     final filePath = await getFilePath(
@@ -26,23 +26,23 @@ class EasyFileSaver {
     );
 
     switch (directory) {
-      case EasyFileDirectory.cache:
+      case EasyFileSaveDirectory.cache:
         await _saveToAppInternalStorage(filePath, fileName, bytes);
         break;
 
-      case EasyFileDirectory.internal:
+      case EasyFileSaveDirectory.internal:
         await _saveToAppInternalStorage(filePath, fileName, bytes);
         break;
 
-      case EasyFileDirectory.external:
+      case EasyFileSaveDirectory.external:
         await _invokeMethodChannel('saveFileToExternal', fileName, bytes);
         break;
 
-      case EasyFileDirectory.download:
+      case EasyFileSaveDirectory.download:
         await _invokeMethodChannel('saveFileToDownloads', fileName, bytes);
         break;
 
-      case EasyFileDirectory.saf:
+      case EasyFileSaveDirectory.saf:
         await _invokeMethodChannel('saveFileToSaf', fileName, bytes);
         break;
     }
@@ -58,10 +58,10 @@ class EasyFileSaver {
   /// - `fileName` must include the file extension (e.g., "document.pdf").
   static Future<String?> getFilePath({
     required String fileName,
-    required EasyFileDirectory directory,
+    required EasyFileSaveDirectory directory,
     Function()? onPermissionDenied,
   }) async {
-    if (directory == EasyFileDirectory.saf) return null;
+    if (directory == EasyFileSaveDirectory.saf) return null;
 
     await FileService.requestPermission(
       onPermissionDenied: () {
