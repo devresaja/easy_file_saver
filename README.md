@@ -1,16 +1,17 @@
 # easy_file_saver
 
-A Flutter plugin for easily saving files to various directories. This plugin handles permissions and different storage locations, including internal storage, external storage, downloads, and the Storage Access Framework (SAF).
+Flutter plugin to easily save file to various storage directories.
 
 ## Features
 
 -   Save `Uint8List` bytes to a file.
 -   Supports multiple storage directories
     #### Android:
-    -   `EasyFileDirectory.internal`: App-specific internal storage (private to the app).
-    -   `EasyFileDirectory.external`: Public media storage (scoped to app).
-    -   `EasyFileDirectory.download`: Public downloads folder.
-    -   `EasyFileDirectory.saf`: User-selected directory via Storage Access Framework (SAF).
+    -   `EasyFileSaveDirectory.cache`: Temporary cache directory.
+    -   `EasyFileSaveDirectory.internal`: App-specific internal storage (private to the app).
+    -   `EasyFileSaveDirectory.external`: Public media storage (scoped to app).
+    -   `EasyFileSaveDirectory.download`: Public downloads folder.
+    -   `EasyFileSaveDirectory.saf`: User-selected directory via Storage Access Framework (SAF).
 
     #### IOS:
     - Not supported yet.
@@ -44,7 +45,7 @@ import 'package:easy_file_saver/easy_file_saver.dart';
 
 ### Saving a file
 
-You can save a file using the `EasyFileSaver.save` method. This method requires the `fileName`, `bytes` (as `Uint8List`), and the `directory` (`EasyFileDirectory` enum) where the file should be saved.
+You can save a file using the `EasyFileSaver.save` method. This method requires the `fileName`, `bytes` (as `Uint8List`), and the `directory` (`EasyFileSaveDirectory` enum) where the file should be saved.
 
 ```dart
 import 'dart:typed_data';
@@ -58,7 +59,7 @@ Future<void> saveImageFile(BuildContext context, Uint8List imageBytes) async {
     String? filePath = await EasyFileSaver.save(
       fileName: fileName,
       bytes: imageBytes,
-      directory: EasyFileDirectory.external, // Example: save to external media
+      directory: EasyFileSaveDirectory.external, // Example: save to external media
       onPermissionDenied: () {
         // Handle permission denied case
         ScaffoldMessenger.of(context).showSnackBar(
@@ -82,4 +83,4 @@ Future<void> saveImageFile(BuildContext context, Uint8List imageBytes) async {
     );
   }
 }
-
+```
