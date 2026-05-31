@@ -1,6 +1,6 @@
 name: easy_file_saver
 description: "Flutter plugin to easily save file to various storage directories."
-version: 1.1.0
+version: 1.2.0
 homepage: https://github.com/devresaja/easy_file_saver
 
 environment:
