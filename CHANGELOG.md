@@ -1,19 +1,24 @@
-## 1.2.0
+## 1.2.0 - 2026-05-31
 
-* Added required permission directly to plugin's AndroidManifest.xml.
+### Added
+- Required permissions directly to plugin's AndroidManifest.xml.
 
-## 1.1.0
+## 1.1.0 - 2025-06-19
 
-* Updated internal `_getFilePath` method as public `getFilePath` method.
-* Added support for cache directory.
-* Added create directory validation if directory is not exist.
-* Breaking Changes
-  - Renamed `EasyFileDirectory` to `EasyFileSaveDirectory`.  
+### Added
+- Public `getFilePath` method (previously internal `_getFilePath`).
+- Support for cache directory.
+- Directory auto-creation if directory does not exist.
 
-## 1.0.1
+### Breaking Changes
+- Renamed `EasyFileDirectory` to `EasyFileSaveDirectory`.
 
-* Fix file path output for external directory.
+## 1.0.1 - 2025-06-11
 
-## 1.0.0
+### Fixed
+- File path output for external directory.
 
-* Initial stable release.
+## 1.0.0 - 2025-06-11
+
+### Added
+- Initial stable release.
