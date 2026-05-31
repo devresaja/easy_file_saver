@@ -27,13 +27,7 @@ flutter pub add easy_file_saver
 ## Configuration
 
 ### Android  
-For Android versions 10 (SDK 29) and below, you need to add the `WRITE_EXTERNAL_STORAGE` permission to your `AndroidManifest.xml`.
-
-Add the following to your `android/app/src/main/AndroidManifest.xml` inside the `<manifest>` tag:
-
-```xml
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" />
-```
+- No configuration needed.
 
 ## Usage
 
