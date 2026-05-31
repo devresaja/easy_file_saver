@@ -1,3 +1,7 @@
+## 1.2.0
+
+* Added required permission directly to plugin's AndroidManifest.xml.
+
 ## 1.1.0
 
 * Updated internal `_getFilePath` method as public `getFilePath` method.
